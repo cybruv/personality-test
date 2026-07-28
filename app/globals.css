@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg-0: #0a0612;
+  --color-bg-1: #130924;
+  --color-surface: #1c1233;
+  --color-surface-2: #261943;
+  --color-border: #3a2a5e;
+  --color-text: #f5f0ff;
+  --color-text-dim: #b5a7d6;
+  --color-accent: #9d75ff;
+  --color-accent-2: #7d6dff;
+  --color-success: #a2e24b;
+  --color-warn: #ffcd6b;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", monospace;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+html {
+  background: linear-gradient(160deg, var(--color-bg-0), var(--color-bg-1) 60%, #1a0a2e);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.slide-in {
+  animation: fade-up 0.4s ease both;
+}
+
+.glow {
+  box-shadow:
+    0 0 60px -20px rgba(157, 117, 255, 0.55),
+    0 0 120px -40px rgba(125, 109, 255, 0.4);
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
