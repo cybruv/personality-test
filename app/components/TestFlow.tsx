@@ -25,6 +25,7 @@ export default function TestFlow({
   const shown = Math.min(total, (batch + 1) * BATCH);
   const progress = total > 0 ? (shown / total) * 100 : 0;
   const finished = shown >= total;
+  const [submitted, setSubmitted] = useState(false);
 
   function pick(i: number, v: number) {
     const next = [...answers];
@@ -33,10 +34,12 @@ export default function TestFlow({
   }
 
   function advance() {
+    if (submitted) return;
     if (finished) {
       // All questions in the last batch must be answered
       const unanswered = answers.slice((total - BATCH) >>> 0).some((a) => a === 0);
       if (unanswered) return;
+      setSubmitted(true);
       onStart(answers);
     } else {
       setBatch((b) => b + 1);
@@ -140,9 +143,12 @@ export default function TestFlow({
           <div className="flex justify-center mt-4">
             <button
               type="submit"
-              className="bg-[var(--color-accent)] hover:bg-[var(--color-accent-2)] text-white font-semibold px-14 py-4 rounded-2xl shadow-lg transition-all hover:scale-105 glow"
+              disabled={submitted}
+              className={`${
+                submitted ? "opacity-50" : ""
+              } bg-[var(--color-accent)] hover:bg-[var(--color-accent-2)] text-white font-semibold px-14 py-4 rounded-2xl shadow-lg transition-all hover:scale-105 glow`}
             >
-              Get my type
+              {submitted ? "Loading results..." : "Get my type"}
             </button>
           </div>
         )}
