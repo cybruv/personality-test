@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-bg-0: #0a0612;
-  --color-bg-1: #130924;
-  --color-surface: #1c1233;
-  --color-surface-2: #261943;
-  --color-border: #3a2a5e;
-  --color-text: #f5f0ff;
-  --color-text-dim: #b5a7d6;
-  --color-accent: #9d75ff;
-  --color-accent-2: #7d6dff;
-  --color-success: #a2e24b;
-  --color-warn: #ffcd6b;
+  --color-bg-0: #f7f4fc;
+  --color-bg-1: #ece6f7;
+  --color-surface: #ffffff;
+  --color-surface-2: #f1ecf8;
+  --color-border: #ded6ea;
+  --color-text: #241d36;
+  --color-text-dim: #6a6085;
+  --color-accent: #5f5bd6;
+  --color-accent-2: #8269e5;
+  --color-success: #3c9a73;
+  --color-warn: #c8922a;
   --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, "SFMono-Regular", monospace;
 }
@@ -26,7 +26,7 @@
 }
 
 html {
-  background: linear-gradient(160deg, var(--color-bg-0), var(--color-bg-1) 60%, #1a0a2e);
+  background: linear-gradient(160deg, #fbf9ff 0%, var(--color-bg-0) 40%, var(--color-bg-1) 100%);
   color: var(--color-text);
   font-family: var(--font-sans);
   min-height: 100%;
@@ -44,8 +44,8 @@ body {
 
 .glow {
   box-shadow:
-    0 0 60px -20px rgba(157, 117, 255, 0.55),
-    0 0 120px -40px rgba(125, 109, 255, 0.4);
+    0 18px 40px -22px rgba(95, 91, 214, 0.30),
+    0 8px 18px -12px rgba(130, 105, 229, 0.22);
 }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }

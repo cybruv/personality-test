@@ -7,10 +7,45 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const BASE = "https://whichpersonality.com";
+
 export const metadata: Metadata = {
-  title: "Discover Your Type — Personality Profile",
+  metadataBase: new URL(BASE),
+  title: {
+    default: "Free Personality Test — Discover Your 4-Letter MBTI Type",
+    template: "%s | WhichPersonality",
+  },
   description:
-    "A 3-minute personality test that reveals your 4-letter type and a deep-dive profile. Free to take, detailed report available.",
+    "Take the free 60-question personality test and discover your 4-letter personality type. Get a deep-dive profile covering your strengths, work style, relationships, stress patterns and compatible types.",
+  keywords:
+    "personality test, MBTI type, free personality test, 16 personality types, personality type test, find your type, introvert extravert, personality profile, psychometric test",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_GB",
+    siteName: "WhichPersonality",
+    title: "Free Personality Test — Discover Your 4-Letter Type",
+    description:
+      "A 3-minute personality inventory that reveals your 4-letter type and a deep-dive profile. 60 questions, 16 types.",
+    url: BASE,
+    images: [{ url: `${BASE}/og.png`, width: 1200, height: 630, alt: "WhichPersonality — free personality test" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Personality Test — Discover Your 4-Letter Type",
+    description:
+      "A 3-minute personality inventory that reveals your 4-letter type and a deep-dive profile.",
+    site: "@whichpersonality",
+    creator: "@whichpersonality",
+    images: [`${BASE}/og.png`],
+  },
+  alternates: {
+    canonical: BASE,
+  },
 };
 
 export default function RootLayout({
@@ -19,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en-GB" className={inter.variable}>
       <body className="bg-[var(--color-bg-0)] text-[var(--color-text)] antialiased">
         {children}
       </body>
