@@ -81,7 +81,8 @@ export default function ResultsClient({ searchParams }: ResultsPageProps) {
             const cj = await c.json();
             if (c.ok && cj.purchased) {
               setPurchased(true);
-              await fetchResult();
+              const r = await fetch(`/api/session?id=${myId}`);
+              if (r.ok) setResult(await r.json());
             } else {
               setError(cj.error || "Payment confirmation failed. Try again or contact support.");
             }
