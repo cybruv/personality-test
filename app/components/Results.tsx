@@ -21,8 +21,8 @@ const POLES: Record<string, Record<string, string>> = {
   JP: { J: "Judging", P: "Perceiving" },
 };
 const LETTER_COLOR: Record<string, string> = {
-  E: "#3c9a73", I: "#5f5bd6", S: "#3c9a73", N: "#8269e5",
-  T: "#c8922a", F: "#9a6d8a", J: "#3f6fb0", P: "#5b7fba",
+  E: "#a2e24b", I: "#9d75ff", S: "#a2e24b", N: "#9d75ff",
+  T: "#ffcd6b", F: "#ffb23e", J: "#5fa8d3", P: "#5fa8d3",
 };
 
 export default function Results({ result }: Props) {
