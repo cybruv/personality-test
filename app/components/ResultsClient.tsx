@@ -244,8 +244,8 @@ function PaywallTeaser({
             "Your 4-letter personality type",
             "A one-line profile summary",
             "All four dimension scores",
-            "Strengths &amp; growth areas",
-            "How you show up at work &amp; in relationships",
+            "Strengths & growth areas",
+            "How you show up at work & in relationships",
             "How your type handles stress",
             "Compatible types",
           ].map((t, i) => (
