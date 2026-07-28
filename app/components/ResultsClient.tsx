@@ -215,7 +215,7 @@ function PaywallTeaser({
             "Compatible types",
           ].map((t, i) => (
             <li key={i} className="flex items-center gap-2">
-              <span className="text-[var(--color-success)]">&#10003;</span> {t}
+              <span className="text-[var(--color-success)]">✓</span> {t}
             </li>
           ))}
         </ul>
@@ -227,11 +227,11 @@ function PaywallTeaser({
             className="bg-[var(--color-accent)] hover:bg-[var(--color-accent-2)] text-white font-semibold px-12 py-4 rounded-2xl shadow-lg transition-all hover:scale-105 disabled:opacity-50"
           >
             {loading
-              ? "Starting payment&hellip;"
-              : "See my type &mdash; &pound;0.99"}
+              ? "Starting payment…"
+              : "See my type — £0.99"}
           </button>
           <span className="text-xs text-[var(--color-text-dim)]">
-            Secure payment &middot; instant access
+            Secure payment · instant access
           </span>
         </div>
 
