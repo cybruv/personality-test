@@ -5,7 +5,12 @@ import { TAGLINES } from "../../lib/questions";
 import { fullProfile } from "../../lib/profiles";
 
 interface ResultsPageProps {
-  searchParams: Promise<{ session?: string; paid?: string; canceled?: string }>;
+  searchParams: Promise<{
+    session?: string;
+    paid?: string;
+    canceled?: string;
+    checkout_session_id?: string;
+  }>;
 }
 
 export default function ResultsClient({ searchParams }: ResultsPageProps) {
@@ -24,6 +29,8 @@ export default function ResultsClient({ searchParams }: ResultsPageProps) {
       try {
         const sp = await searchParams;
         const session = sp?.session;
+        const checkoutSessionId = sp?.checkout_session_id;
+        const wasPaidRedirect = sp?.paid === "true";
         setCanceled(!!sp?.canceled);
 
         const myId =
@@ -54,6 +61,33 @@ export default function ResultsClient({ searchParams }: ResultsPageProps) {
         if (j.purchased) {
           setPurchased(true);
           setResult(j);
+          return;
+        }
+
+        // If Stripe redirected back with ?paid=true, verify the payment
+        // server-side before unlocking the result.
+        if (wasPaidRedirect && checkoutSessionId) {
+          setLoading(true);
+          try {
+            const c = await fetch("/api/purchase/confirm", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                checkoutSessionId,
+                sessionId: myId,
+              }),
+            });
+            if (cancelled) return;
+            const cj = await c.json();
+            if (c.ok && cj.purchased) {
+              setPurchased(true);
+              await fetchResult();
+            } else {
+              setError(cj.error || "Payment confirmation failed. Try again or contact support.");
+            }
+          } catch {
+            if (!cancelled) setError("Payment confirmation failed. Try again or contact support.");
+          }
         }
       } catch {
         if (!cancelled) setMissing(true);
