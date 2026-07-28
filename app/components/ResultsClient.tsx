@@ -44,7 +44,10 @@ export default function ResultsClient({ searchParams }: ResultsPageProps) {
         const r = await fetch(`/api/session?id=${myId}`);
         const j = await r.json();
         if (cancelled) return;
-        if (!r.ok || !j.id && !j.purchased) {
+        // Only a real HTTP error / 404 means the session is missing.
+        // { purchased: false } is a valid (unpaid) session and should show
+        // the paywall — it intentionally omits id/type to keep results hidden.
+        if (!r.ok) {
           setMissing(true);
           return;
         }
