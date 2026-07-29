@@ -58,6 +58,10 @@ export default function RootLayout({
     <html lang="en-GB" className={inter.variable}>
       <head>
         <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18358280505"
+          strategy="afterInteractive"
+        />
+        <Script
           id="gtag-init"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -71,11 +75,6 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-[var(--color-bg-0)] text-[var(--color-text)] antialiased">
-        <Script
-          id="gtag-js"
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18358280505"
-          strategy="afterInteractive"
-        />
         {children}
       </body>
     </html>
